@@ -21,7 +21,9 @@ In this app you can search for a place or look for your current location to get 
 - Convert between Metric(Celsius) and Imperial(Farenheit) temprature measurement.
 - Minimal, Simple, Modern ui design for ease.
 
-![screenshot](https://user-images.githubusercontent.com/93701964/160594667-8317a6dd-f79c-4e0e-9b28-1e4fba341ac1.jpg)
+  
+<a target='_blank' href="https://ayannagori.vercel.app/"><img width='38%' src="https://user-images.githubusercontent.com/93701964/160594667-8317a6dd-f79c-4e0e-9b28-1e4fba341ac1.jpg"/></a>
+
 
 ## Contributing
 
