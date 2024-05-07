@@ -6,7 +6,7 @@
       />
 </p>
 
-# Weather app by <a target='_blank' href="https://ayannagori.vercel.app/">ParallelXL</a>
+# Weather App
 
 This is a weather app used to see detailed weather data of anywhere from everywhere.
 
@@ -21,7 +21,9 @@ In this app you can search for a place or look for your current location to get 
 - Convert between Metric(Celsius) and Imperial(Farenheit) temprature measurement.
 - Minimal, Simple, Modern ui design for ease.
 
-![screenshot](https://user-images.githubusercontent.com/93701964/160594667-8317a6dd-f79c-4e0e-9b28-1e4fba341ac1.jpg)
+  
+<a target='_blank' href="https://ayannagori.vercel.app/"><img width='38%' src="https://user-images.githubusercontent.com/93701964/160594667-8317a6dd-f79c-4e0e-9b28-1e4fba341ac1.jpg"/></a>
+
 
 ## Contributing
 
@@ -29,8 +31,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Authors and acknowledgment
-
-Owner -- Hello 👋 I am Ayan Nagori AKA ParallelXL online, a frontend developer from India. I make modern and minimal websites. check my <a target='_blank' href="https://github.com/ParallelXL">Github Profile</a> or <a target='_blank' href="https://ayannagori.vercel.app/">My Portfolio</a> to check out my projects 😉.
-
-Contributer -- YOU CAN ADD WHATEVER YOU WANT HERE BELLO
-
+Owner -- Hello 👋 I am Ayan Nagori, a Frontend Developer from India. I make modern and minimal websites. Take a look at my <a target='_blank' href="https://ayannagori.vercel.app/">My Portfolio Website</a> to check out my other projects 😉.
