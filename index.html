@@ -1,183 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script
-      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-      type="module"
-    ></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./Assets/logo.png" type="image/x-icon" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
-    <link rel="stylesheet" href="./styles/calendarComponent.css" />
-    <link rel="stylesheet" href="./styles/main.css" />
-    <link rel="stylesheet" href="./styles/sidebar.css" />
-    <link rel="stylesheet" href="./styles/aside.css" />
-    <link rel="stylesheet" href="./styles/global.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./Assets/logo.png" type="image/x-icon" />
 
-    <title>Weadher Forcast</title>
-  </head>
-  <body>
-    <!-- <dotlottie-player
+  <link rel="stylesheet" href="./styles/calendarComponent.css" />
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/sidebar.css" />
+  <link rel="stylesheet" href="./styles/aside.css" />
+  <link rel="stylesheet" href="./styles/global.css" />
+
+  <title>Weadher Forcast</title>
+</head>
+
+<body>
+  <!-- <dotlottie-player
       src="https://lottie.host/7183c6e5-0272-456a-b317-a77f56eac84f/j71oBjHjbV.lottie"
       background="transparent"
       speed="2"
       style="width: 300px; height: 300px"
       loop
     ></dotlottie-player> -->
-    <header>
-      <!-- _______ 1. Aside _______ -->
-      <aside>
-        <div class="logo">
-          <img src="./Assets/logo.png" alt="" />
+  <header>
+    <!-- _______ 1. Aside _______ -->
+    <aside>
+      <div class="logo">
+        <img src="./Assets/logo.png" alt="" />
+      </div>
+
+      <div class="nav-links">
+        <i class="fa fa-house activated"></i>
+        <i class="fa fa-gears"></i>
+        <i class="fa fa-location-dot"></i>
+      </div>
+
+      <div class="logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </div>
+    </aside>
+
+    <!-- _______ 2. Main _______ -->
+    <main>
+      <nav class="flex">
+        <div>
+          <h1>Weather Forcast</h1>
+          <h2 class="currentDate">Saturday 26, December 2020</h2>
         </div>
 
-        <div class="nav-links">
-          <i class="fa fa-house activated"></i>
-          <i class="fa fa-gears"></i>
-          <i class="fa fa-location-dot"></i>
+        <!-- Search Country Input -->
+        <form>
+          <button type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+          <input type="text" placeholder="Search" id="search" />
+        </form>
+      </nav>
+
+      <div class="city-row flex">
+        <!-- Search Guide -->
+        <div class="guide">
+          <h1>Get weather</h1>
+          <div class="guide-links flex">
+            <button class="focus-input">Search Manually</button>
+            <button class="location">
+              <i class="fa-solid fa-location-crosshairs"></i> Use Current
+              Location
+            </button>
+          </div>
         </div>
 
-        <div class="logout">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </div>
-      </aside>
-
-      <!-- _______ 2. Main _______ -->
-      <main>
-        <nav class="flex">
+        <!-- Weather Details column -->
+        <div class="city-col">
           <div>
-            <h1>Weather Forcast</h1>
-            <h2 class="currentDate">Saturday 26, December 2020</h2>
+            <h1 class="city-name"></h1>
+            <h2 class="city-region"></h2>
+          </div>
+          <span class="temprature"></span>
+        </div>
+
+        <div class="city-image-col">
+          <img class="city-image" src="./Assets/placeholder.png" />
+        </div>
+
+        <!-- Loader -->
+        <div class="loader-wrapper hide">
+          <img class="loader" src="./Assets/loader.gif" alt="LOADER" />
+        </div>
+        <div class="opacity-bg hide"></div>
+      </div>
+
+      <section class="weather-section">
+        <!-- Weekly weather row -->
+        <nav class="flex">
+          <div class="switch-days flex">
+            <button>Today</button>
+            <button class="activated">Week</button>
           </div>
 
-          <!-- Search Country Input -->
-          <form>
-            <button type="submit">
-              <i class="fa fa-search"></i>
-            </button>
-            <input type="text" placeholder="Search" id="search" />
-          </form>
+          <div class="switch-unit flex">
+            <button class="cel activated">°C</button>
+            <button class="faren">°F</button>
+          </div>
         </nav>
 
-        <div class="city-row flex">
-          <!-- Search Guide -->
-          <div class="guide">
-            <h1>Get weather</h1>
-            <div class="guide-links flex">
-              <button class="focus-input">Search Manually</button>
-              <button class="location">
-                <i class="fa-solid fa-location-crosshairs"></i> Use Current
-                Location
-              </button>
+        <!-- Daily weather row -->
+        <div class="weather-row"></div>
+      </section>
+
+      <footer>
+        <h1>Today's Highlight</h1>
+
+        <div class="footer-row">
+          <div class="footer-col">
+            <i class="fa-regular fa-sun"></i>
+            <h3>Sunrise & Sunset</h3>
+
+            <ul class="flex">
+              <i class="fa-solid fa-arrow-up-long"></i>
+
+              <li class="flex">
+                <span>5:50 AM</span>
+                <p>+1m 20s</p>
+              </li>
+              <i class="fa-solid fa-arrow-down-long"></i>
+
+              <li class="flex">
+                <span>5:25 PM</span>
+                <p>+1m 20s</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <i class="fa-solid fa-temperature-full"></i>
+            <h3>Temperature</h3>
+
+            <ul class="flex">
+              <i class="fa-solid fa-arrow-up-long"></i>
+              <li class="flex">
+                <span>5:50 AM</span>
+                <p>+1m 20s</p>
+              </li>
+
+              <i class="fa-solid fa-arrow-down-long"></i>
+              <li class="flex">
+                <span>5:25 PM</span>
+                <p>+1m 20s</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <i class="fa-solid fa-wind"></i>
+            <h3>Air Quality Index</h3>
+
+            <div class="air-quality flex">
+              <p>US AQI <span>95*</span></p>
+              <h4>Moderate</h4>
             </div>
           </div>
-
-          <!-- Weather Details column -->
-          <div class="city-col">
-            <div>
-              <h1 class="city-name"></h1>
-              <h2 class="city-region"></h2>
-            </div>
-            <span class="temprature"></span>
-          </div>
-
-          <div class="city-image-col">
-            <img class="city-image" src="./Assets/placeholder.png" />
-          </div>
-
-          <!-- Loader -->
-          <div class="loader-wrapper hide">
-            <img class="loader" src="./Assets/loader.gif" alt="LOADER" />
-          </div>
-          <div class="opacity-bg hide"></div>
         </div>
+      </footer>
+    </main>
 
-        <section class="weather-section">
-          <!-- Weekly weather row -->
-          <nav class="flex">
-            <div class="switch-days flex">
-              <button>Today</button>
-              <button class="activated">Week</button>
-            </div>
-
-            <div class="switch-unit flex">
-              <button class="cel activated">°C</button>
-              <button class="faren">°F</button>
-            </div>
-          </nav>
-
-          <!-- Daily weather row -->
-          <div class="weather-row"></div>
-        </section>
-
-        <footer>
-          <h1>Today's Highlight</h1>
-
-          <div class="footer-row">
-            <div class="footer-col">
-              <i class="fa-regular fa-sun"></i>
-              <h3>Sunrise & Sunset</h3>
-
-              <ul class="flex">
-                <i class="fa-solid fa-arrow-up-long"></i>
-
-                <li class="flex">
-                  <span>5:50 AM</span>
-                  <p>+1m 20s</p>
-                </li>
-                <i class="fa-solid fa-arrow-down-long"></i>
-
-                <li class="flex">
-                  <span>5:25 PM</span>
-                  <p>+1m 20s</p>
-                </li>
-              </ul>
-            </div>
-
-            <div class="footer-col">
-              <i class="fa-solid fa-temperature-full"></i>
-              <h3>Temperature</h3>
-
-              <ul class="flex">
-                <i class="fa-solid fa-arrow-up-long"></i>
-                <li class="flex">
-                  <span>5:50 AM</span>
-                  <p>+1m 20s</p>
-                </li>
-
-                <i class="fa-solid fa-arrow-down-long"></i>
-                <li class="flex">
-                  <span>5:25 PM</span>
-                  <p>+1m 20s</p>
-                </li>
-              </ul>
-            </div>
-
-            <div class="footer-col">
-              <i class="fa-solid fa-wind"></i>
-              <h3>Air Quality Index</h3>
-
-              <div class="air-quality flex">
-                <p>US AQI <span>95*</span></p>
-                <h4>Moderate</h4>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </main>
-
-      <!-- _______ 3. SideBar _______ -->
-      <section class="sidebar">
+    <!-- _______ 3. SideBar _______ -->
+    <!-- <section class="sidebar">
         <nav class="sidebar-navigation flex">
           <div class="flex">
             <div class="icon-container">
@@ -209,7 +204,6 @@
               <li>Sat</li>
             </ul>
             <ul class="calendar-dates"></ul>
-            <!-- Dates are populated using javascript -->
           </div>
         </div>
 
@@ -231,13 +225,14 @@
           <img src="Assets/countryVectors/bolivia.min.png" alt="" />
           <p>Save City</p>
         </div>
-      </section>
-    </header>
+      </section> -->
+  </header>
 
-    <div class="pop-up"></div>
-    <audio src="./Assets/pop-sound.wav"></audio>
-    <script type="module" src="./scripts/calendar.js"></script>
-    <script type="module" src="./scripts/data.js"></script>
-    <script type="module" src="./scripts/main.js"></script>
-  </body>
+  <div class="pop-up"></div>
+  <audio src="./Assets/pop-sound.wav"></audio>
+  <script type="module" src="./scripts/calendar.js"></script>
+  <script type="module" src="./scripts/data.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+
 </html>
