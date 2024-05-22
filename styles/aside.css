@@ -18,17 +18,20 @@ aside {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4vh;
   margin-top: 12rem;
+  width: 100%;
 }
 
 aside i {
   position: relative;
   color: var(--grey);
-  padding: 2rem;
   font-size: 1.5rem;
   align-items: center;
   cursor: pointer;
+  padding: 1.6rem 0;
+  width: 100%;
+  text-align: center;
 }
 
 aside i::after {
@@ -36,10 +39,10 @@ aside i::after {
   background-color: var(--primary);
   display: none;
   height: 100%;
-  width: 5px;
+  width: 4px;
   position: absolute;
-  left: -20px;
   top: 50%;
+  left: 0px;
   translate: 0 -50%;
 }
 
