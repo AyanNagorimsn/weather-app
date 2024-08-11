@@ -25,11 +25,14 @@ const audioEl = document.querySelector("audio");
 const loaderEl = document.querySelector(".loader-wrapper");
 const d = new Date();
 
+const welcome = document.querySelector(".welcome__page");
+const footer = document.querySelector("footer");
+
 // Get current date and show in navbar
 const getUserDate = () => {
-  document.querySelector(".currentDate").textContent = `${days[d.getDay()]} ${d.getDate()}, ${
-    months[d.getMonth()]
-  } ${d.getFullYear()}`;
+  document.querySelector(".currentDate").textContent = `${
+    days[d.getDay()]
+  } ${d.getDate()}, ${months[d.getMonth()]} ${d.getFullYear()}`;
 };
 getUserDate();
 
@@ -52,7 +55,8 @@ const convertTimestamp = (milli) => {
 
 // Convert Celsius to Farenhiet and vice verca
 const convertToFaren = (celsi) => `${Math.round(celsi * 1.8 + 32)}<sup>°</sup>`;
-const convertToCelsi = (faren) => `${Math.round((faren - 32) / 1.8)}<sup>°</sup>`;
+const convertToCelsi = (faren) =>
+  `${Math.round((faren - 32) / 1.8)}<sup>°</sup>`;
 
 // Show pop up on error with audio
 const showPopUp = function (title, msg, isError = false) {
@@ -120,10 +124,15 @@ const getData = function (lat, lon, place, region) {
       currentNameEl.textContent = place;
       currentRegionEl.textContent = ConvertIsoCountry(region);
       currentTempEl.innerHTML = Math.round(data.current.temp) + "<sup>°</sup>";
-      currentCityImageEl.src = `./Assets/countryVectors/${ConvertIsoCountry(region)
+      currentCityImageEl.src = `./Assets/countryVectors/${ConvertIsoCountry(
+        region
+      )
         .replaceAll(" ", "")
         .toLowerCase()}.min.png`;
       populateWeatherRow(data.daily);
+
+      welcome.classList.add("hide");
+      footer.classList.remove("hide");
     })
     .catch(() => {
       showPopUp(
@@ -247,24 +256,58 @@ FromCurLocationBtn.addEventListener("click", (e) => {
       });
   }
   function showError(err) {
-    showPopUp("ERROR", `${err.message} or Geolocation is not supported by the browser`, true);
+    showPopUp(
+      "ERROR",
+      `${err.message} or Geolocation is not supported by the browser`,
+      true
+    );
   }
 });
 
+/**const showPosition = async function(position){
+  try{
+  const r = await fetch(
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=f1b7ba7a47f863080257931892975f3a`
+    )
+   const data = await r.json()
+
+   data.toggleLoader()
+   guideEl.classList.add("hide");
+   let { lat, lon, country, name } = data[0];
+   getData(lat, lon, name, country);
+  }catch(error){
+    showPopUp(
+      "ERROR",
+      `${error.message} or Geolocation is not supported by the browser`,
+      true
+    );
+  }
+} */
+
 switchUnitEl.addEventListener("click", function (e) {
   if (currentTempEl.textContent) {
-    if (e.target === switchFarEl && e.target.classList.contains("activated") === false) {
+    if (
+      e.target === switchFarEl &&
+      e.target.classList.contains("activated") === false
+    ) {
       e.target.classList.add("activated");
       switchCelEl.classList.remove("activated");
-      currentTempEl.innerHTML = convertToFaren(currentTempEl.textContent.replace("°", " "));
+      currentTempEl.innerHTML = convertToFaren(
+        currentTempEl.textContent.replace("°", " ")
+      );
       document.querySelectorAll(".temp").forEach((el) => {
         el.innerHTML = convertToFaren(el.textContent.replace("°", " "));
       });
     }
-    if (e.target === switchCelEl && e.target.classList.contains("activated") === false) {
+    if (
+      e.target === switchCelEl &&
+      e.target.classList.contains("activated") === false
+    ) {
       e.target.classList.add("activated");
       switchFarEl.classList.remove("activated");
-      currentTempEl.innerHTML = convertToCelsi(currentTempEl.textContent.replace("°", " "));
+      currentTempEl.innerHTML = convertToCelsi(
+        currentTempEl.textContent.replace("°", " ")
+      );
       document.querySelectorAll(".temp").forEach((el) => {
         el.innerHTML = convertToCelsi(el.textContent.replace("°", " "));
       });
@@ -275,7 +318,8 @@ switchUnitEl.addEventListener("click", function (e) {
 // Add and remove border on if focused
 inputEl.addEventListener("focusin", () => {
   formEl.style.border = "2px solid var(--primary)";
-  if (inputEl.value) document.querySelector("form .enter").classList.add("change");
+  if (inputEl.value)
+    document.querySelector("form .enter").classList.add("change");
 });
 inputEl.addEventListener("focusout", () => {
   formEl.style.border = "2px solid transparent";
