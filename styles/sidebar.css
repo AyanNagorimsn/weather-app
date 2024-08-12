@@ -1,7 +1,7 @@
 .sidebar {
   padding: 2rem 3rem;
   width: 35%;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 
 .sidebar > div,
@@ -9,10 +9,11 @@
 .sidebar > article {
   background: var(--light);
   padding: 1.6rem 1.2rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 20px #00000005;
 }
 
 .sidebar article {
-  border-radius: 1rem;
   margin-top: 1rem;
   padding: 1rem 2rem;
   gap: 1rem;

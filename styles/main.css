@@ -11,7 +11,7 @@ main > nav h2,
 }
 
 form {
-  background-color: #f6f6f6;
+  background-color: #fbfbfb;
   padding: 1.2rem 1.6rem 1.2rem 1.6rem;
   border-radius: 100px;
   display: flex;
@@ -55,7 +55,7 @@ form .enter.change {
 
 form input,
 form input:focus {
-  background-color: #f6f6f6;
+  background-color: #fbfbfb;
   width: 12rem;
 }
 
@@ -70,7 +70,7 @@ form input::placeholder {
   border-radius: 3rem;
   padding: 1.5rem 3rem;
   margin-top: 2.8rem;
-  height: 270px;
+  height: 220px;
   position: relative;
   transition: 0.3s;
 }
@@ -309,18 +309,6 @@ form input::placeholder {
   border: 2px solid var(--primary);
 }
 
-.welcome__page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  color: #888;
-  position: absolute;
-  top: 90%;
-  left: 20%;
-  gap: 1rem;
-  width: 45rem;
-}
 /* Footer Styling */
 
 footer {
@@ -339,7 +327,7 @@ footer {
   position: relative;
   border-radius: 2rem;
   overflow: hidden;
-  background: #f6f6f6;
+  background: #fbfbfb;
 }
 
 .footer-col > i {

@@ -24,8 +24,17 @@ html {
 body {
   background: var(--bgcolor);
   margin: 3rem;
-
   overflow-x: hidden;
+}
+
+/* Removing Scrollbar */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 ::selection {
@@ -65,6 +74,14 @@ img {
   opacity: 0;
 }
 
+.remove {
+  display: none;
+}
+
+.homePage {
+  display: flex;
+}
+
 body > header {
   max-width: 1200px;
   border-radius: 2rem;
@@ -91,19 +108,20 @@ h2 {
 .pop-up {
   background: var(--secondary);
   border-radius: 2rem;
-  padding: 1.2rem 1.2rem 2rem 1rem;
+  padding: 2.4rem;
+
   position: absolute;
-  top: 4rem;
-  right: 0.5rem;
+  top: 0;
+  right: 0;
   width: 30rem;
   box-shadow: 5px 0px 10px #00000021;
   z-index: 99;
-  transform: translateX(100%);
+  transform: translate(100%, 20%);
   transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .pop-up.active {
-  transform: translateX(-15px);
+  transform: translate(-10%, 20%);
 }
 
 .pop-up.red {
