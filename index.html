@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./styles/aside.css" />
   <link rel="stylesheet" href="./styles/global.css" />
 
-  <title>Weadher Forcast</title>
+  <title>Weather Forecast</title>
 </head>
 
 <body>
@@ -31,12 +31,11 @@
 
       <div class="nav-links">
         <i class="fa fa-house activated"></i>
-        <i class="fa fa-gears"></i>
-        <i class="fa fa-location-dot"></i>
+        <i class="fa fa-bookmark"></i>
       </div>
 
       <div class="logout">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <i class="fa-solid fa-headset"></i>
       </div>
     </aside>
 
@@ -44,7 +43,7 @@
     <main>
       <nav class="flex">
         <div>
-          <h1>Weather Forcast</h1>
+          <h1>Weather Forecast</h1>
           <h2 class="currentDate">Saturday 26, December 2020</h2>
         </div>
 
@@ -108,9 +107,13 @@
 
         <!-- Daily weather row -->
         <div class="weather-row"></div>
+        <div class="welcome__page">
+          <i class="fa fa-search"></i>
+          <p>Search for a city to display info!</p>
+        </div>
       </section>
 
-      <footer>
+      <footer class="hide">
         <h1>Today's Highlight</h1>
 
         <div class="footer-row">
@@ -166,20 +169,13 @@
       </footer>
     </main>
 
+    <!-- _______ 3. SideBar _______ -->
     <section class="sidebar">
       <nav class="sidebar-navigation flex">
         <div class="flex">
           <div class="icon-container">
             <i class="fa-regular fa-user"></i>
           </div>
-
-          <div class="icon-container">
-            <i class="fa-regular fa-bell"></i>
-          </div>
-        </div>
-
-        <div class="icon-container">
-          <i class="fa-solid fa-headset"></i>
         </div>
       </nav>
 
@@ -189,13 +185,14 @@
         </header>
         <div class="calendar-body">
           <ul class="calendar-weekdays">
-            <li>Sun</li>
-            <li>Mon</li>
-            <li>Tue</li>
-            <li>Wed</li>
-            <li>Thu</li>
-            <li>Fri</li>
-            <li>Sat</li>
+            CALENDER
+            <!-- <li>Sun</li>
+              <li>Mon</li>
+              <li>Tue</li>
+              <li>Wed</li>
+              <li>Thu</li>
+              <li>Fri</li>
+              <li>Sat</li> -->
           </ul>
           <ul class="calendar-dates"></ul>
         </div>
@@ -217,7 +214,7 @@
 
       <div class="add_city">
         <img src="Assets/countryVectors/bolivia.min.png" alt="" />
-        <p>Save City</p>
+        <p>Available Cities</p>
       </div>
     </section>
   </header>
