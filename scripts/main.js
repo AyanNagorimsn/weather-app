@@ -1,7 +1,6 @@
 "use strict";
 
 // importing static constant objects
-
 import { isoCountries, months, dayIds, days } from "./data.js";
 
 // Selecting elements
@@ -208,7 +207,7 @@ currentCityImageEl.addEventListener("onMouseDown", (e) => {
 
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
-  toggleLoader();
+  toggleLoader(false);
   guideEl.classList.add("hide");
   searchPlace(inputEl.value);
 });
@@ -240,7 +239,7 @@ FromCurLocationBtn.addEventListener("click", (e) => {
     )
       .then((r) => r.json())
       .then((data) => {
-        toggleLoader();
+        toggleLoader(false);
         guideEl.classList.add("hide");
         let { lat, lon, country, name } = data[0];
         getData(lat, lon, name, country);
@@ -272,7 +271,7 @@ switchUnitEl.addEventListener("click", function (e) {
   }
 });
 
-// Add and remove border on if focused
+// Add and remove border on if focused | add enter text beside the input
 inputEl.addEventListener("focusin", () => {
   formEl.style.border = "2px solid var(--primary)";
   if (inputEl.value) document.querySelector("form .enter").classList.add("change");
