@@ -1,217 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./Assets/logo.png" type="image/x-icon" />
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/sidebar.css" />
+    <link rel="stylesheet" href="./styles/aside.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="./Assets/logo.png" type="image/x-icon" />
+    <title>Weather Forecast</title>
+  </head>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./styles/main.css" />
-  <link rel="stylesheet" href="./styles/sidebar.css" />
-  <link rel="stylesheet" href="./styles/aside.css" />
-  <link rel="stylesheet" href="./styles/global.css" />
-
-  <title>Weather Forecast</title>
-</head>
-
-<body>
-  <header>
-    <!-- _______ Aside _______ -->
-    <aside>
-      <div class="logo">
-        <img src="./Assets/logo.png" alt="" />
-      </div>
-
-      <div class="nav-links">
-        <i class="fa fa-house activated"></i>
-        <i class="fa fa-bookmark"></i>
-        <i class="fa-solid fa-map-location-dot"></i>
-      </div>
-
-      <div class="logout">
-        <i class="fa-solid fa-right-from-bracket"></i>
-      </div>
-    </aside>
-
-    <div class="homePage page ">
-      <!-- _______ 2. Main _______ -->
-      <main>
-        <nav class="flex">
-          <div>
-            <h1>Weather Forecast</h1>
-            <h2 class="currentDate">Saturday 26, December 2020</h2>
-          </div>
-
-          <!-- Search Country Input -->
-          <form>
-            <button type="submit">
-              <i class="fa fa-search"></i>
-            </button>
-            <div class="enter">ENTER</div>
-            <input type="text" placeholder="Search" id="search" />
-          </form>
-        </nav>
-
-        <div class="city-row flex">
-          <!-- Search Guide -->
-          <div class="guide">
-            <h1>Get weather</h1>
-            <div class="guide-links flex">
-              <button class="focus-input">Search Manually</button>
-              <h2>OR</h2>
-              <button class="location">
-                <i class="fa-solid fa-location-crosshairs"></i> Use Current Location
-              </button>
-            </div>
-          </div>
-
-          <!-- Weather Details column -->
-          <div class="city-col">
-            <div>
-              <h1 class="city-name"></h1>
-              <h2 class="city-region"></h2>
-            </div>
-            <span class="temprature"></span>
-          </div>
-
-          <div class="city-image-col">
-            <img class="city-image" src="./Assets/placeholder.png" />
-          </div>
-
-          <!-- Loader -->
-          <div class="loader-wrapper hide">
-            <img class="loader" src="./Assets/loader.gif" alt="LOADER" />
-          </div>
-          <div class="opacity-bg hide"></div>
+  <body>
+    <header>
+      <!-- _______ Aside _______ -->
+      <aside>
+        <div class="logo">
+          <img src="./Assets/logo.png" alt="" />
         </div>
 
-        <section class="weather-section">
-          <!-- Weekly weather row -->
+        <div class="nav-links">
+          <i class="fa fa-house activated"></i>
+          <i class="fa fa-bookmark"></i>
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+
+        <div class="logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+      </aside>
+
+      <div class="homePage page">
+        <!-- _______ 2. Main _______ -->
+        <main>
           <nav class="flex">
-            <div class="switch-days flex">
-              <button>Today</button>
-              <button class="activated">Week</button>
+            <div>
+              <h1>Weather Forecast</h1>
+              <h2 class="currentDate">Saturday 26, December 2020</h2>
             </div>
 
-            <div class="switch-unit flex">
-              <button class="cel activated">°C</button>
-              <button class="faren">°F</button>
+            <!-- Search Country Input -->
+            <form>
+              <button type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+              <div class="enter">ENTER</div>
+              <input type="text" placeholder="Search" id="search" />
+            </form>
+          </nav>
+
+          <div class="city-row flex">
+            <!-- Search Guide -->
+            <div class="guide">
+              <h1>Get weather</h1>
+              <div class="guide-links flex">
+                <button class="focus-input">Search Manually</button>
+                <h2>OR</h2>
+                <button class="location">
+                  <i class="fa-solid fa-location-crosshairs"></i> Use Current
+                  Location
+                </button>
+              </div>
+            </div>
+
+            <!-- Weather Details column -->
+            <div class="city-col">
+              <div>
+                <h1 class="city-name"></h1>
+                <h2 class="city-region"></h2>
+              </div>
+              <span class="temprature"></span>
+            </div>
+
+            <div class="city-image-col">
+              <img class="city-image" src="./Assets/placeholder.png" />
+            </div>
+
+            <!-- Loader -->
+            <div class="loader-wrapper hide">
+              <img class="loader" src="./Assets/loader.gif" alt="LOADER" />
+            </div>
+            <div class="opacity-bg hide"></div>
+          </div>
+
+          <section class="weather-section">
+            <!-- Weekly weather row -->
+            <nav class="flex">
+              <div class="switch-days flex">
+                <button class="today activated">Today</button>
+                <button class="week">Week</button>
+              </div>
+
+              <div class="switch-unit flex">
+                <button class="cel activated">°C</button>
+                <button class="faren">°F</button>
+              </div>
+            </nav>
+
+            <!-- Daily weather container -->
+            <div class="daily-weather hide"></div>
+
+            <!-- Weekly weather row -->
+            <div class="weather-row"></div>
+          </section>
+
+          <footer class="hide">
+            <h1>Today's Highlight</h1>
+
+            <div class="footer-row">
+              <div class="footer-col">
+                <i class="fa-regular fa-sun"></i>
+                <h3>Sunrise & Sunset</h3>
+
+                <ul class="flex">
+                  <i class="fa-solid fa-arrow-up-long"></i>
+
+                  <li class="flex">
+                    <span>5:50 AM</span>
+                    <p>+1m 20s</p>
+                  </li>
+                  <i class="fa-solid fa-arrow-down-long"></i>
+
+                  <li class="flex">
+                    <span>5:25 PM</span>
+                    <p>+1m 20s</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="footer-col">
+                <i class="fa-solid fa-temperature-full"></i>
+                <h3>Temperature</h3>
+
+                <ul class="flex">
+                  <i class="fa-solid fa-arrow-up-long"></i>
+                  <li class="flex">
+                    <span>5:50 AM</span>
+                    <p>+1m 20s</p>
+                  </li>
+
+                  <i class="fa-solid fa-arrow-down-long"></i>
+                  <li class="flex">
+                    <span>5:25 PM</span>
+                    <p>+1m 20s</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="footer-col">
+                <i class="fa-solid fa-wind"></i>
+                <h3>Air Quality Index</h3>
+
+                <div class="air-quality flex">
+                  <p>US AQI <span>95*</span></p>
+                  <h4>Moderate</h4>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </main>
+
+        <!-- _______ 3. SideBar _______ -->
+        <section class="sidebar">
+          <nav class="sidebar-navigation flex">
+            <div class="flex">
+              <div class="icon-container">
+                <i class="fa-regular fa-user"></i>
+              </div>
             </div>
           </nav>
 
-          <!-- Daily weather row -->
-          <div class="weather-row"></div>
+          <article class="flex">
+            <img src="Assets/plane.svg" alt="" />
+            <h3>Subscribe to our newsletter</h3>
+          </article>
+
+          <div class="advertise-app">
+            <img src="Assets/app.png" alt="" />
+            <div>
+              <h3>Get Our weather app on your Devices!</h3>
+              <p>get your weather app on your mobile</p>
+              <img src="Assets/google-play.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="add_city">
+            <img src="Assets/countryImages/bolivia.min.png" alt="" />
+            <p>Available Cities</p>
+          </div>
         </section>
+      </div>
 
-        <footer class="hide">
-          <h1>Today's Highlight</h1>
+      <div class="bookmarkPage page remove">
+        <h1>THIS IS Bookmark PAGE</h1>
+      </div>
+      <div class="reportPage page remove">
+        <h1>THIS IS REPORT PAGE</h1>
+      </div>
+    </header>
 
-          <div class="footer-row">
-            <div class="footer-col">
-              <i class="fa-regular fa-sun"></i>
-              <h3>Sunrise & Sunset</h3>
-
-              <ul class="flex">
-                <i class="fa-solid fa-arrow-up-long"></i>
-
-                <li class="flex">
-                  <span>5:50 AM</span>
-                  <p>+1m 20s</p>
-                </li>
-                <i class="fa-solid fa-arrow-down-long"></i>
-
-                <li class="flex">
-                  <span>5:25 PM</span>
-                  <p>+1m 20s</p>
-                </li>
-              </ul>
-            </div>
-
-            <div class="footer-col">
-              <i class="fa-solid fa-temperature-full"></i>
-              <h3>Temperature</h3>
-
-              <ul class="flex">
-                <i class="fa-solid fa-arrow-up-long"></i>
-                <li class="flex">
-                  <span>5:50 AM</span>
-                  <p>+1m 20s</p>
-                </li>
-
-                <i class="fa-solid fa-arrow-down-long"></i>
-                <li class="flex">
-                  <span>5:25 PM</span>
-                  <p>+1m 20s</p>
-                </li>
-              </ul>
-            </div>
-
-            <div class="footer-col">
-              <i class="fa-solid fa-wind"></i>
-              <h3>Air Quality Index</h3>
-
-              <div class="air-quality flex">
-                <p>US AQI <span>95*</span></p>
-                <h4>Moderate</h4>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </main>
-
-      <!-- _______ 3. SideBar _______ -->
-      <section class="sidebar">
-        <nav class="sidebar-navigation flex">
-          <div class="flex">
-            <div class="icon-container">
-              <i class="fa-regular fa-user"></i>
-            </div>
-          </div>
-        </nav>
-
-        <article class="flex">
-          <img src="Assets/plane.svg" alt="" />
-          <h3>Subscribe to our newsletter</h3>
-        </article>
-
-        <div class="advertise-app">
-          <img src="Assets/app.png" alt="" />
-          <div>
-            <h3>Get Our weather app on your Devices!</h3>
-            <p>get your weather app on your mobile</p>
-            <img src="Assets/google-play.svg" alt="" />
-          </div>
-        </div>
-
-        <div class="add_city">
-          <img src="Assets/countryImages/bolivia.min.png" alt="" />
-          <p>Available Cities</p>
-        </div>
-      </section>
-    </div>
-
-    <div class="bookmarkPage page remove">
-      <h1>THIS IS Bookmark PAGE</h1>
-    </div>
-    <div class="reportPage page remove">
-      <h1>THIS IS REPORT PAGE</h1>
-    </div>
-  </header>
-
-  <div class="pop-up"></div>
-  <audio src="./Assets/pop-sound.wav"></audio>
-  <script type="module" src="./scripts/data.js"></script>
-  <script type="module" src="./scripts/main.js"></script>
-</body>
-
+    <div class="pop-up"></div>
+    <audio src="./Assets/pop-sound.wav"></audio>
+    <script type="module" src="./scripts/data.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
 </html>

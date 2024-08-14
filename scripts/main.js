@@ -24,13 +24,15 @@ const audioEl = document.querySelector("audio");
 const loaderEl = document.querySelector(".loader-wrapper");
 const d = new Date();
 
+const today = document.querySelector(".today");
+const week = document.querySelector(".week");
 const footer = document.querySelector("footer");
 
 // Get current date and show in navbar
 const getUserDate = () => {
-  document.querySelector(".currentDate").textContent = `${days[d.getDay()]} ${d.getDate()}, ${
-    months[d.getMonth()]
-  } ${d.getFullYear()}`;
+  document.querySelector(".currentDate").textContent = `${
+    days[d.getDay()]
+  } ${d.getDate()}, ${months[d.getMonth()]} ${d.getFullYear()}`;
 };
 getUserDate();
 
@@ -53,7 +55,8 @@ const convertTimestamp = (milli) => {
 
 // Convert Celsius to Farenhiet and vice verca
 const convertToFaren = (celsi) => `${Math.round(celsi * 1.8 + 32)}<sup>°</sup>`;
-const convertToCelsi = (faren) => `${Math.round((faren - 32) / 1.8)}<sup>°</sup>`;
+const convertToCelsi = (faren) =>
+  `${Math.round((faren - 32) / 1.8)}<sup>°</sup>`;
 
 // Show pop up on error with audio
 const showPopUp = function (title, msg, isError = false) {
@@ -77,6 +80,33 @@ const showPopUp = function (title, msg, isError = false) {
 
 // Show weather row using the weekly data
 const populateWeatherRow = function (weeklyData) {
+  const activeDay = weeklyData[0]; // Assuming the first entry is today's weather
+
+  // Populate daily weather
+  const dailyHtml = `
+    <div class="weather-col activated">
+      <div class="flex">
+        <h1>${convertTimestamp(activeDay.dt)}<small>${
+    activeDay.weather[0].description
+  }</small></h1>
+        <div class='icon'>
+          <img src="https://openweathermap.org/img/wn/${
+            activeDay.weather[0].icon
+          }@2x.png">
+        </div>
+      </div>
+      <div class="flex">
+        <div class="l">
+          <h2><i class="fa fa-wind"></i>${activeDay.wind_speed}km/h</h2>
+          <h2><i class="fa fa-spa"></i>${activeDay.humidity}%</h2>
+        </div>
+        <h3 class='temp'>${Math.round(activeDay.temp.day)}<sup>°</sup></h3>
+      </div>
+    </div>
+  `;
+  document.querySelector(".daily-weather").innerHTML = dailyHtml;
+
+  // Populate weekly weather
   weeklyData.pop();
 
   weeklyData.forEach((current) => {
@@ -91,11 +121,12 @@ const populateWeatherRow = function (weeklyData) {
     let html = `
     <div class="weather-col ${dt === days[d.getDay()] ? "activated" : ""}">
       <div class="flex">
-      <h1>${dt}<small>${weather[0].description}</small></h1>
-      <div class='icon'>
-       <img src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png">
-      </div>
-
+        <h1>${dt}<small>${weather[0].description}</small></h1>
+        <div class='icon'>
+          <img src="https://openweathermap.org/img/wn/${
+            weather[0].icon
+          }@2x.png">
+        </div>
       </div>
       <div class="flex">
         <div class="l">
@@ -121,7 +152,9 @@ const getData = function (lat, lon, place, region) {
       currentNameEl.textContent = place;
       currentRegionEl.textContent = ConvertIsoCountry(region);
       currentTempEl.innerHTML = Math.round(data.current.temp) + "<sup>°</sup>";
-      currentCityImageEl.src = `./Assets/countryImages/${ConvertIsoCountry(region)
+      currentCityImageEl.src = `./Assets/countryImages/${ConvertIsoCountry(
+        region
+      )
         .replaceAll(" ", "")
         .toLowerCase()}.min.png`;
       populateWeatherRow(data.daily);
@@ -237,6 +270,27 @@ FromCurLocationBtn.addEventListener("click", (e) => {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
 
+  //show the weather daily or weekly on click
+
+  footer.style.display = "none";
+  today.addEventListener("click", function () {
+    today.classList.add("activated");
+    week.classList.remove("activated");
+
+    document.querySelector(".daily-weather").classList.remove("hide");
+    document.querySelector(".weather-row").classList.add("hide");
+    footer.style.display = "block";
+  });
+
+  week.addEventListener("click", function () {
+    today.classList.remove("activated");
+    week.classList.add("activated");
+
+    document.querySelector(".daily-weather").classList.add("hide");
+    document.querySelector(".weather-row").classList.remove("hide");
+    footer.style.display = "none";
+  });
+
   function showPosition(position) {
     fetch(
       `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=f1b7ba7a47f863080257931892975f3a`
@@ -250,7 +304,11 @@ FromCurLocationBtn.addEventListener("click", (e) => {
       });
   }
   function showError(err) {
-    showPopUp("ERROR", `${err.message} or Geolocation is not supported by the browser`, true);
+    showPopUp(
+      "ERROR",
+      `${err.message} or Geolocation is not supported by the browser`,
+      true
+    );
   }
 });
 
@@ -276,18 +334,28 @@ FromCurLocationBtn.addEventListener("click", (e) => {
 
 switchUnitEl.addEventListener("click", function (e) {
   if (currentTempEl.textContent) {
-    if (e.target === switchFarEl && e.target.classList.contains("activated") === false) {
+    if (
+      e.target === switchFarEl &&
+      e.target.classList.contains("activated") === false
+    ) {
       e.target.classList.add("activated");
       switchCelEl.classList.remove("activated");
-      currentTempEl.innerHTML = convertToFaren(currentTempEl.textContent.replace("°", " "));
+      currentTempEl.innerHTML = convertToFaren(
+        currentTempEl.textContent.replace("°", " ")
+      );
       document.querySelectorAll(".temp").forEach((el) => {
         el.innerHTML = convertToFaren(el.textContent.replace("°", " "));
       });
     }
-    if (e.target === switchCelEl && e.target.classList.contains("activated") === false) {
+    if (
+      e.target === switchCelEl &&
+      e.target.classList.contains("activated") === false
+    ) {
       e.target.classList.add("activated");
       switchFarEl.classList.remove("activated");
-      currentTempEl.innerHTML = convertToCelsi(currentTempEl.textContent.replace("°", " "));
+      currentTempEl.innerHTML = convertToCelsi(
+        currentTempEl.textContent.replace("°", " ")
+      );
       document.querySelectorAll(".temp").forEach((el) => {
         el.innerHTML = convertToCelsi(el.textContent.replace("°", " "));
       });
@@ -298,7 +366,8 @@ switchUnitEl.addEventListener("click", function (e) {
 // Add and remove border on if focused | add enter text beside the input
 inputEl.addEventListener("focusin", () => {
   formEl.style.border = "2px solid var(--primary)";
-  if (inputEl.value) document.querySelector("form .enter").classList.add("change");
+  if (inputEl.value)
+    document.querySelector("form .enter").classList.add("change");
 });
 inputEl.addEventListener("focusout", () => {
   formEl.style.border = "2px solid transparent";
