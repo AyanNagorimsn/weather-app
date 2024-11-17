@@ -1,16 +1,44 @@
 .sidebar {
   padding: 2rem 3rem;
-  width: 35%;
-  background: #fbfbfb;
+  width: 30%;
+  background: #f6f9ff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
 }
 
 .sidebar > div,
 .sidebar > nav,
 .sidebar > article {
   background: var(--light);
-  padding: 1.6rem 1.2rem;
+  padding: 1.6rem;
   border-radius: 1rem;
   box-shadow: 2px 2px 20px #00000005;
+}
+
+.sidebar nav {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.6rem;
+}
+
+.sidebar nav svg {
+  stroke: #000000aa;
+  width: 24px;
+  cursor: pointer;
+}
+
+.sidebar nav .user {
+  width: 26px;
+  height: 26px;
+  background: var(--primary);
+  stroke: white;
+  border-radius: 1000px;
+  padding: 0.2rem;
 }
 
 .sidebar article {
@@ -22,18 +50,12 @@
 .sidebar article img {
   width: 3rem;
 }
+
 .sidebar article p {
   margin: 1rem;
   font-size: 0.88rem;
   font-weight: 700;
   color: #f04c8c;
-}
-.sidebar nav i {
-  width: 3rem;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #aaa;
-  fill: #f04c8c;
 }
 
 .advertise-app {

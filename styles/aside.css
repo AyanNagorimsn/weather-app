@@ -1,9 +1,14 @@
 aside {
-  min-width: 7vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8vw;
+  height: 100vh;
   padding: 3rem 0;
   box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
 }
 
@@ -14,27 +19,34 @@ aside {
   width: 100%;
 }
 
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 4vh;
-  margin-top: 12rem;
   width: 100%;
+  gap: 4vh;
 }
 
-aside i {
+aside li {
   position: relative;
-  color: var(--grey);
-  font-size: 1.4vw;
-  align-items: center;
-  cursor: pointer;
-  padding: 1.4vw 0;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1.3vh 0;
+}
+
+aside svg {
+  cursor: pointer;
+  width: 28px;
   text-align: center;
 }
 
-aside i::after {
+aside li::after {
   content: "";
   background-color: var(--primary);
   display: none;
@@ -44,18 +56,21 @@ aside i::after {
   top: 50%;
   left: 0px;
   translate: 0 -50%;
+  border-radius: 0 20px 20px 0;
 }
 
-aside i.activated {
-  color: var(--primary);
+aside li.activated svg {
+  stroke: var(--primary);
 }
 
-aside i.activated::after {
+aside li.activated::after {
   display: block;
 }
 
 .logout {
+  width: 22px;
   display: flex;
-  flex: 1;
-  align-items: flex-end;
+}
+.logout img {
+  width: 100%;
 }

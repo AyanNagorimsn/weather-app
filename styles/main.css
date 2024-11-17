@@ -11,10 +11,11 @@ main > nav h2,
 }
 
 form {
-  background-color: #fbfbfb;
-  padding: 1.2rem 1.6rem 1.2rem 1.6rem;
+  background-color: #f8f8f8;
+  padding-left: 1.6rem;
   border-radius: 100px;
   display: flex;
+  align-items: center;
   border: 2px solid transparent;
   position: relative;
 }
@@ -22,12 +23,13 @@ form {
 form button {
   position: relative;
   overflow: hidden;
-  margin-right: 1.4rem;
+  display: flex;
+  align-items: center;
 }
 
-form i {
-  font-size: 1.4rem;
-  color: var(--grey);
+form svg {
+  width: 20px;
+  stroke: var(--grey);
   cursor: pointer;
 }
 
@@ -46,7 +48,7 @@ form .enter {
   box-shadow: 2px 2px 0px var(--primary);
   opacity: 0;
 
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
 form .enter.change {
@@ -55,8 +57,16 @@ form .enter.change {
 
 form input,
 form input:focus {
-  background-color: #fbfbfb;
-  width: 12rem;
+  background-color: transparent;
+  width: 18rem;
+  padding: 1.2rem 1.6rem;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 form input::placeholder {
@@ -85,11 +95,15 @@ form input::placeholder {
   transition: 0.3s;
 }
 
+.guide h1 {
+  font-size: 2.4rem;
+}
+
 .guide-links button {
   display: block;
   color: var(--primary);
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0.6rem 1rem;
   margin: 1rem;
   border: 2px solid var(--primary);
@@ -99,13 +113,20 @@ form input::placeholder {
 
 .guide-links h2 {
   font-family: "Anton", sans-serif;
-  color: rgba(0, 0, 0, 0.347);
-  font-size: 2rem;
+  color: rgba(107, 99, 14, 0.3);
+  font-size: 2.4rem;
 }
 
 .guide-links .location {
   background: var(--primary);
   color: var(--light);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.location svg {
+  width: 2rem;
 }
 
 .city-col {
@@ -116,7 +137,7 @@ form input::placeholder {
 }
 
 .city-col h1 {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
 }
 
 .city-col h2 {
@@ -141,8 +162,8 @@ form input::placeholder {
 .city-image-col img {
   height: 100%;
   border: none;
-  transform: scale(1.2);
-  transform-origin: bottom center;
+  transform: scale(1.25, 1.2);
+  transform-origin: bottom right;
   pointer-events: none;
 }
 
@@ -250,7 +271,7 @@ form input::placeholder {
   margin: 0.5rem;
   width: 23%;
   border-radius: 1.5rem;
-  border: 1px solid #eee;
+  border: 1px solid #ddd;
   color: var(--greydark);
   padding: 1.2rem;
 }
@@ -325,9 +346,9 @@ footer {
   padding: 1.8rem 1.6rem;
   width: 32%;
   position: relative;
-  border-radius: 2rem;
+  border-radius: 1rem;
   overflow: hidden;
-  background: #fbfbfb;
+  background: #f8f8f8;
 }
 
 .footer-col > i {

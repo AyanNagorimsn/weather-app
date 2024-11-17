@@ -21,12 +21,6 @@ html {
   --greydark: #5f5653;
 }
 
-body {
-  background: var(--bgcolor);
-  margin: 3rem;
-  overflow-x: hidden;
-}
-
 /* Removing Scrollbar */
 html {
   scrollbar-width: none;
@@ -64,6 +58,10 @@ img {
   -webkit-touch-callout: none;
 }
 
+svg {
+  stroke: #00000088;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -72,6 +70,7 @@ img {
 
 .hide {
   opacity: 0;
+  pointer-events: none;
 }
 
 .remove {
@@ -83,13 +82,12 @@ img {
 }
 
 body > header {
-  max-width: 1200px;
-  border-radius: 2rem;
   background: var(--light);
-  margin: 0 auto;
+  margin-left: 8vw;
   display: flex;
   overflow: hidden;
   min-height: calc(100vh - 6.2rem);
+  max-width: calc(92vw - 30%);
 }
 
 h1 {
