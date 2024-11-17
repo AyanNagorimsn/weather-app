@@ -137,23 +137,19 @@ const populateWeatherRow = function (weeklyData) {
 };
 
 // Get and show Data on search
-const getData = function (lat, lon, place, country) {
+const getData = function (lat, lon, name, countryCode) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${api_key}`
   )
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
       // Show current data
-      currentNameEl.textContent = place;
-      currentRegionEl.textContent = ConvertIsoCountry(country);
+      currentNameEl.textContent = name;
+      currentRegionEl.textContent = ConvertIsoCountry(countryCode);
       currentTempEl.innerHTML = Math.round(data.main.temp) + "<sup>°</sup>";
-      console.log(ConvertIsoCountry(country));
-      currentCityImageEl.src = `./Assets/countryImages/${ConvertIsoCountry(country)
+      currentCityImageEl.src = `./Assets/countryImages/${ConvertIsoCountry(countryCode)
         .replaceAll(" ", "")
         .toLowerCase()}.min.png`;
-      // populateWeatherRow(data.daily);
-
       footer.classList.remove("hide");
     })
     .catch(() => {
@@ -173,7 +169,7 @@ const searchPlace = function (place) {
       .then((data) => {
         console.log(data);
         let { lat, lon, country, name } = data[0];
-        getData(lat, lon, country, name);
+        getData(lat, lon, name, country);
         weatherRowEl.innerHTML = " ";
         inputEl.value = "";
       })

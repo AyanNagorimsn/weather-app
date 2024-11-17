@@ -77,6 +77,10 @@ svg {
   display: none;
 }
 
+.page {
+  width: 100%;
+}
+
 .homePage {
   display: flex;
 }
