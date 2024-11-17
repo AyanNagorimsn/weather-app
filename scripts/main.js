@@ -28,11 +28,13 @@ const today = document.querySelector(".today");
 const week = document.querySelector(".week");
 const footer = document.querySelector("footer");
 
+const api_key = "8602251c799c32118d3f358aed2c231c";
+
 // Get current date and show in navbar
 const getUserDate = () => {
-  document.querySelector(".currentDate").textContent = `${
-    days[d.getDay()]
-  } ${d.getDate()}, ${months[d.getMonth()]} ${d.getFullYear()}`;
+  document.querySelector(".currentDate").textContent = `${days[d.getDay()]} ${d.getDate()}, ${
+    months[d.getMonth()]
+  } ${d.getFullYear()}`;
 };
 getUserDate();
 
@@ -55,8 +57,7 @@ const convertTimestamp = (milli) => {
 
 // Convert Celsius to Farenhiet and vice verca
 const convertToFaren = (celsi) => `${Math.round(celsi * 1.8 + 32)}<sup>°</sup>`;
-const convertToCelsi = (faren) =>
-  `${Math.round((faren - 32) / 1.8)}<sup>°</sup>`;
+const convertToCelsi = (faren) => `${Math.round((faren - 32) / 1.8)}<sup>°</sup>`;
 
 // Show pop up on error with audio
 const showPopUp = function (title, msg, isError = false) {
@@ -86,13 +87,9 @@ const populateWeatherRow = function (weeklyData) {
   const dailyHtml = `
     <div class="weather-col activated">
       <div class="flex">
-        <h1>${convertTimestamp(activeDay.dt)}<small>${
-    activeDay.weather[0].description
-  }</small></h1>
+        <h1>${convertTimestamp(activeDay.dt)}<small>${activeDay.weather[0].description}</small></h1>
         <div class='icon'>
-          <img src="https://openweathermap.org/img/wn/${
-            activeDay.weather[0].icon
-          }@2x.png">
+          <img src="https://openweathermap.org/img/wn/${activeDay.weather[0].icon}@2x.png">
         </div>
       </div>
       <div class="flex">
@@ -123,9 +120,7 @@ const populateWeatherRow = function (weeklyData) {
       <div class="flex">
         <h1>${dt}<small>${weather[0].description}</small></h1>
         <div class='icon'>
-          <img src="https://openweathermap.org/img/wn/${
-            weather[0].icon
-          }@2x.png">
+          <img src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png">
         </div>
       </div>
       <div class="flex">
@@ -142,22 +137,22 @@ const populateWeatherRow = function (weeklyData) {
 };
 
 // Get and show Data on search
-const getData = function (lat, lon, place, region) {
+const getData = function (lat, lon, place, country) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=f1b7ba7a47f863080257931892975f3a`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${api_key}`
   )
     .then((r) => r.json())
     .then((data) => {
+      console.log(data);
       // Show current data
       currentNameEl.textContent = place;
-      currentRegionEl.textContent = ConvertIsoCountry(region);
-      currentTempEl.innerHTML = Math.round(data.current.temp) + "<sup>°</sup>";
-      currentCityImageEl.src = `./Assets/countryImages/${ConvertIsoCountry(
-        region
-      )
+      currentRegionEl.textContent = ConvertIsoCountry(country);
+      currentTempEl.innerHTML = Math.round(data.main.temp) + "<sup>°</sup>";
+      console.log(ConvertIsoCountry(country));
+      currentCityImageEl.src = `./Assets/countryImages/${ConvertIsoCountry(country)
         .replaceAll(" ", "")
         .toLowerCase()}.min.png`;
-      populateWeatherRow(data.daily);
+      // populateWeatherRow(data.daily);
 
       footer.classList.remove("hide");
     })
@@ -173,13 +168,12 @@ const getData = function (lat, lon, place, region) {
 
 const searchPlace = function (place) {
   if (place) {
-    fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${place}&limit=5&appid=f1b7ba7a47f863080257931892975f3a`
-    )
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${place}&limit=5&appid=${api_key}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         let { lat, lon, country, name } = data[0];
-        getData(lat, lon, name, country);
+        getData(lat, lon, country, name);
         weatherRowEl.innerHTML = " ";
         inputEl.value = "";
       })
@@ -293,10 +287,11 @@ FromCurLocationBtn.addEventListener("click", (e) => {
 
   function showPosition(position) {
     fetch(
-      `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=f1b7ba7a47f863080257931892975f3a`
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=${api_key}`
     )
       .then((r) => r.json())
       .then((data) => {
+        console.log(data);
         toggleLoader(false);
         guideEl.classList.add("hide");
         let { lat, lon, country, name } = data[0];
@@ -304,18 +299,14 @@ FromCurLocationBtn.addEventListener("click", (e) => {
       });
   }
   function showError(err) {
-    showPopUp(
-      "ERROR",
-      `${err.message} or Geolocation is not supported by the browser`,
-      true
-    );
+    showPopUp("ERROR", `${err.message} or Geolocation is not supported by the browser`, true);
   }
 });
 
 /**const showPosition = async function(position){
   try{
   const r = await fetch(
-      `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=f1b7ba7a47f863080257931892975f3a`
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=${api_key}`
     )
    const data = await r.json()
 
@@ -334,28 +325,18 @@ FromCurLocationBtn.addEventListener("click", (e) => {
 
 switchUnitEl.addEventListener("click", function (e) {
   if (currentTempEl.textContent) {
-    if (
-      e.target === switchFarEl &&
-      e.target.classList.contains("activated") === false
-    ) {
+    if (e.target === switchFarEl && e.target.classList.contains("activated") === false) {
       e.target.classList.add("activated");
       switchCelEl.classList.remove("activated");
-      currentTempEl.innerHTML = convertToFaren(
-        currentTempEl.textContent.replace("°", " ")
-      );
+      currentTempEl.innerHTML = convertToFaren(currentTempEl.textContent.replace("°", " "));
       document.querySelectorAll(".temp").forEach((el) => {
         el.innerHTML = convertToFaren(el.textContent.replace("°", " "));
       });
     }
-    if (
-      e.target === switchCelEl &&
-      e.target.classList.contains("activated") === false
-    ) {
+    if (e.target === switchCelEl && e.target.classList.contains("activated") === false) {
       e.target.classList.add("activated");
       switchFarEl.classList.remove("activated");
-      currentTempEl.innerHTML = convertToCelsi(
-        currentTempEl.textContent.replace("°", " ")
-      );
+      currentTempEl.innerHTML = convertToCelsi(currentTempEl.textContent.replace("°", " "));
       document.querySelectorAll(".temp").forEach((el) => {
         el.innerHTML = convertToCelsi(el.textContent.replace("°", " "));
       });
@@ -366,8 +347,7 @@ switchUnitEl.addEventListener("click", function (e) {
 // Add and remove border on if focused | add enter text beside the input
 inputEl.addEventListener("focusin", () => {
   formEl.style.border = "2px solid var(--primary)";
-  if (inputEl.value)
-    document.querySelector("form .enter").classList.add("change");
+  if (inputEl.value) document.querySelector("form .enter").classList.add("change");
 });
 inputEl.addEventListener("focusout", () => {
   formEl.style.border = "2px solid transparent";
