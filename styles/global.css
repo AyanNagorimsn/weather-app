@@ -168,10 +168,13 @@ h2 {
 
   .sidebar {
     position: unset;
-    padding: 2rem;
+    padding: 0 2rem;
     width: 100%;
+    height: unset !important;
+    background: var(--light);
   }
   .sidebar .add_city {
+    margin: 0;
     padding: 1rem;
   }
 }
