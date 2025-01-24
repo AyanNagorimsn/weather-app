@@ -1,7 +1,7 @@
 "use strict";
 
 // importing static constant objects
-import { isoCountries, months, dayIds, days } from "./data.js";
+import { isoCountries, months, dayIds, days, aestheticImages } from "./data.js";
 
 // Selecting elements
 const formEl = document.querySelector("form");
@@ -361,3 +361,32 @@ inputEl.addEventListener("keyup", () => {
     document.querySelector("form .enter").classList.remove("change");
   }
 });
+
+const div = document.querySelector(".add_city");
+const container = document.querySelector(".image-container");
+const img = document.querySelector(".aestheticImage");
+
+const delay = 5000; //
+
+function changeImage() {
+  const randomIndex = Math.floor(Math.random() * aestheticImages.length);
+  const newImg = document.createElement("img");
+
+  newImg.src = aestheticImages[randomIndex];
+  newImg.classList.add("new-image");
+
+  container.appendChild(newImg);
+
+  setTimeout(() => {
+    newImg.classList.add("show");
+  }, 10);
+
+  setTimeout(() => {
+    img.src = newImg.src;
+    container.removeChild(newImg);
+  }, 800);
+}
+
+setInterval(changeImage, delay);
+
+div.addEventListener("click", changeImage);

@@ -261,15 +261,7 @@ export const months = [
   "December",
 ];
 
-export const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+export const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 export const dayIds = {
   Monday: 1,
@@ -280,3 +272,22 @@ export const dayIds = {
   Saturday: 6,
   Sunday: 7,
 };
+
+export const aestheticImages = [
+  "Assets/landscapeImages/landscape1.webp",
+  "Assets/landscapeImages/landscape2.webp",
+  "Assets/landscapeImages/landscape3.webp",
+  "Assets/landscapeImages/landscape4.webp",
+  "Assets/landscapeImages/landscape5.webp",
+  "Assets/landscapeImages/landscape6.webp",
+  "Assets/landscapeImages/landscape7.webp",
+  "Assets/landscapeImages/landscape8.webp",
+  "Assets/landscapeImages/landscape9.webp",
+  "Assets/landscapeImages/landscape10.webp",
+  "Assets/landscapeImages/landscape11.webp",
+  "Assets/landscapeImages/landscape12.webp",
+  "Assets/landscapeImages/landscape13.webp",
+  "Assets/landscapeImages/landscape14.webp",
+  "Assets/landscapeImages/landscape15.webp",
+  "Assets/landscapeImages/landscape16.webp",
+];

@@ -99,6 +99,10 @@ form input::placeholder {
   font-size: 2.4rem;
 }
 
+.guide-links {
+  align-items: unset !important;
+}
+
 .guide-links button {
   display: block;
   color: var(--primary);

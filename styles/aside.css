@@ -71,6 +71,8 @@ aside li.activated::after {
   width: 22px;
   display: flex;
 }
+
 .logout img {
   width: 100%;
+  background: url("/Assets/countryImages/india.min.png");
 }
